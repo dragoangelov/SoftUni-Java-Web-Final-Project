@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Home</title>
+    <th:block th:insert="~{/fragments/head}"></th:block>
+</head>
+
+<body>
+
+<div>
+    <th:block th:insert="~{/fragments/navigation}"></th:block>
+</div>
+
+<div class="col-5 float-start mx-lg-5">
+    <img alt="pizza delivery image" src="/images/pizzaDelivery.jpg" class="delivery-image">
+</div>
+
+<div class="col-5 float-end"
+     style="margin-top: 150px;
+text-align: center;
+padding: 10px;
+background-color: #346fc3;
+margin-right: 110px;
+margin-left: 0;
+border-radius: 25px;
+color: white">
+    <div></div>
+            <thead>
+
+            <tr style="background-color: #00b8ff; color: white; font-family: Georgia, serif;">
+                <th scope="col" class="text-center">Id</th>
+                <th scope="col" class="text-center">Price</th>
+                <th scope="col" class="text-center">Created on</th>
+                <th scope="col" class="text-center">Discount</th>
+                <th scope="col" class="text-center">Status</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr style="font-family: Georgia, serif;">
+
+                <th scope="row" class="text-center text-white" style="background-color: #00b8ff">1</th>
+
+                <td class="text-center"
+                    style="background-color: #f4f1ed; color: red; font-weight: bold;">0.00
+                </td>
+
+                <td class="text-center"
+                    style="background-color: #f4f1ed">0.00
+                </td>
+
+                <td class="text-center"
+                    style="background-color: #f4f1ed">10%
+                </td>
+
+                <td class="text-center"
+                    style="background-color: #f4f1ed">0%
+                </td>
+
+                <td class="text-center" style="background-color: #f4f1ed">0.00</td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <h3
+        style="font-family: Georgia, serif;
+        padding: 5px;
+        text-align: center;">
+        Hello, <span></span>!
+        Welcome to our restaurant. It's time for work. </h3>
+
+
+    <h3
+        style="font-family: Georgia, serif;
+        padding: 5px;
+        text-align: center">
+        Hello, Anonymous! Welcome to our restaurant. If you want to eat delicious
+        food, make registration or login, look at the menu and make order. </h3>
+
+</div>
+
+<th:block th:insert="~{fragments/footer}"></th:block>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
