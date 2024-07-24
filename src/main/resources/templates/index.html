@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Home</title>
@@ -14,7 +14,7 @@
 </div>
 
 <div class="col-5 float-start mx-lg-5">
-    <img alt="pizza delivery image" src="/images/pizzaDelivery.jpg" class="delivery-image">
+    <img alt="pizza delivery image" src="/images/pizzaDelivery.png" class="delivery-image">
 </div>
 
 <div class="col-5 float-end"
@@ -26,7 +26,14 @@ margin-right: 110px;
 margin-left: 0;
 border-radius: 25px;
 color: white">
-    <div></div>
+    <div sec:authorize="isAuthenticated() && hasAuthority('ROLE_USER') && !hasAnyAuthority('ROLE_ADMIN')">
+
+        <h3 style="font-family: Georgia, serif;">Hello, <span th:text="${name}"></span>!</h3>
+        <h3 style="font-family: Georgia, serif;" th:if="${orders.size()==0}">You don't have active orders. Look at the menu and make one.</h3>
+        <h3 style="font-family: Georgia, serif;" th:unless="${orders.size()==0}">Your active orders:</h3>
+        <table th:if="${orders.size()!=0}" class="table table-bordered"
+               style="width: 80%; margin-left:auto; margin-right: auto;">
+
             <thead>
 
             <tr style="background-color: #00b8ff; color: white; font-family: Georgia, serif;">
@@ -41,27 +48,27 @@ color: white">
 
             <tbody>
 
-            <tr style="font-family: Georgia, serif;">
+            <tr th:each="order: ${orders}" th:object="${order}" style="font-family: Georgia, serif;">
 
-                <th scope="row" class="text-center text-white" style="background-color: #00b8ff">1</th>
+                <th scope="row" th:text="*{id}" class="text-center text-white" style="background-color: #00b8ff">1</th>
 
-                <td class="text-center"
+                <td th:text="*{price}" class="text-center"
                     style="background-color: #f4f1ed; color: red; font-weight: bold;">0.00
                 </td>
 
-                <td class="text-center"
+                <td th:text="*{#temporals.format(createdOn,'dd-MM-yyyy')}" class="text-center"
                     style="background-color: #f4f1ed">0.00
                 </td>
 
-                <td class="text-center"
+                <td th:unless="*{discount.isBlank()}" class="text-center"
                     style="background-color: #f4f1ed">10%
                 </td>
 
-                <td class="text-center"
+                <td th:if="*{discount.isBlank()}" class="text-center"
                     style="background-color: #f4f1ed">0%
                 </td>
 
-                <td class="text-center" style="background-color: #f4f1ed">0.00</td>
+                <td th:text="*{status.name()}" class="text-center" style="background-color: #f4f1ed">0.00</td>
 
             </tr>
 
@@ -71,15 +78,15 @@ color: white">
 
     </div>
 
-    <h3
+    <h3 sec:authorize="isAuthenticated() && hasAnyAuthority('ROLE_ADMIN')"
         style="font-family: Georgia, serif;
         padding: 5px;
         text-align: center;">
-        Hello, <span></span>!
+        Hello, <span th:text="${name}"></span>!
         Welcome to our restaurant. It's time for work. </h3>
 
 
-    <h3
+    <h3 sec:authorize="!isAuthenticated()"
         style="font-family: Georgia, serif;
         padding: 5px;
         text-align: center">

@@ -14,7 +14,7 @@
 </div>
 
 <div class="col-5 float-start mx-lg-5">
-    <img alt="pizza delivery image" src="/images/pizzaDelivery.jpg" class="delivery-image">
+    <img alt="pizza delivery image" src="/images/pizzaDelivery.png" class="delivery-image">
 </div>
 
 <div class="col-5 float-end" style="font-family: Georgia, serif;">
@@ -33,6 +33,7 @@
             </div>
             <input type="text"
                    class="form-control"
+                   th:value="${username}"
                    id="username"
                    min="2" max="50"
                    placeholder="Ex: ivaylo5"
@@ -63,7 +64,7 @@
 
         <div class="form-group mt-1">
             <div class="label-holder text-white d-flex justify-content-start">
-                <p class="errors alert-danger">Invalid username or password.</p>
+                <p th:if="${bad_credentials}" class="errors alert-danger">Invalid username or password.</p>
             </div>
         </div>
 
