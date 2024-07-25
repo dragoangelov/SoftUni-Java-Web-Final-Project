@@ -1,5 +1,6 @@
 package org.example.deliveryservice.model.dto;
 
+
 import org.example.deliveryservice.model.enums.ProductCategoryEnum;
 
 import java.math.BigDecimal;
