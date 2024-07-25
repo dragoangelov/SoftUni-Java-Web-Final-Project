@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>Home</title>
@@ -58,14 +58,6 @@ color: white">
 
                 <td th:text="*{#temporals.format(createdOn,'dd-MM-yyyy')}" class="text-center"
                     style="background-color: #f4f1ed">0.00
-                </td>
-
-                <td th:unless="*{discount.isBlank()}" class="text-center"
-                    style="background-color: #f4f1ed">10%
-                </td>
-
-                <td th:if="*{discount.isBlank()}" class="text-center"
-                    style="background-color: #f4f1ed">0%
                 </td>
 
                 <td th:text="*{status.name()}" class="text-center" style="background-color: #f4f1ed">0.00</td>
