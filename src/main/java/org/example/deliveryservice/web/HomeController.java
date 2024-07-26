@@ -29,6 +29,7 @@ public class HomeController {
             final UserEntity loggedUser = this.userService.getUserByUsername(principal.getName());
 
             model.addAttribute("name", loggedUser.getUsername());
+            model.addAttribute("orders", orderService.getInProgressOrdersByUser(loggedUser));
             model.addAttribute("countProducts", loggedUser.getCart().getCountProducts());
 
         }

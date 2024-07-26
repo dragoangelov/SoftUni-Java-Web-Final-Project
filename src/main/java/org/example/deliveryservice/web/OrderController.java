@@ -26,8 +26,46 @@ public class OrderController {
         return new OrderBindingDto();
     }
 
+    @GetMapping("/finalize")
+    public String getFinalizeOrder(Model model,
+                                   Principal principal) {
 
+        model.addAttribute("foodPrice", this.orderService.getProductsPrice(principal.getName()));
+        model.addAttribute("countProducts", this.orderService.getProductsInTheCart(principal.getName()).size());
 
+        return "finalize-order";
+    }
+
+    @PostMapping("/finalize")
+    public String postFinalizeOrder(@Valid OrderBindingDto orderDto,
+                                    BindingResult bindingResult,
+                                    RedirectAttributes redirectAttributes,
+                                    Principal principal) {
+
+        if (bindingResult.hasErrors()) {
+
+            redirectAttributes.addFlashAttribute("orderDto", orderDto);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.orderDto"
+                    , bindingResult);
+
+            return "redirect:/orders/finalize";
+
+        }
+
+        this.orderService.makeOrder(orderDto, principal.getName());
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/history")
+    public String getOwnOrdersHistory(Model model,
+                                      Principal principal) {
+
+        model.addAttribute("orders", this.orderService.getOrdersByUser(principal.getName()));
+        model.addAttribute("countProducts",this.orderService.getProductsInTheCart(principal.getName()).size());
+
+        return "orders-history-user";
+    }
 
     @GetMapping("/details/{id}")
     public String getOrderDetails(@PathVariable("id") Long id,
@@ -45,6 +83,14 @@ public class OrderController {
         model.addAttribute("allOrders", this.orderService.getAllOrders());
 
         return "orders-history";
+    }
+
+    @PatchMapping("/finish/{id}")
+    public String finishOrder(@PathVariable("id") Long orderId) {
+
+        this.orderService.finishOrder(orderId);
+
+        return "redirect:/orders/all/history";
     }
 
     @PatchMapping("/cancel/{id}")

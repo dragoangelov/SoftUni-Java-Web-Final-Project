@@ -28,6 +28,17 @@ public class CartController {
         this.orderService = orderService;
     }
 
+    @GetMapping
+    public String getCart(Model model,
+                          Principal principal) {
+
+        model.addAttribute("cartProducts", this.orderService.getProductsInTheCart(principal.getName()));
+        model.addAttribute("productsPrice", this.orderService.getProductsPrice(principal.getName()));
+        model.addAttribute("countProducts", this.orderService.getProductsInTheCart(principal.getName()).size());
+
+        return "order-cart";
+    }
+
 
     @PatchMapping("/add/{id}")
     public String addProductToTheCart(@PathVariable("id") Long id,
