@@ -33,22 +33,23 @@
 
                 <tbody>
 
-                <tr>
+                <tr th:each="order: ${orders}" th:object="${order}">
 
-                    <th scope="row" class="text-center" style="background-color: #00b8ff; color: white">
+                    <th scope="row" th:text="*{id}" class="text-center" style="background-color: #00b8ff; color: white">
                         1
                     </th>
 
-                    <td class="text-center" style="background-color: #f4f1ed">0.00</td>
+                    <td th:text="*{price}" class="text-center" style="background-color: #f4f1ed">0.00</td>
 
-                    <td  class="text-center"
+                    <td th:text="*{#temporals.format(createdOn,'dd-MM-yyyy')}" class="text-center"
                         style="background-color: #f4f1ed">01-01-2010
                     </td>
 
-                    <td  class="text-center" style="background-color: #f4f1ed">Delivered</td>
+                    <td th:text="*{status.name()}" class="text-center" style="background-color: #f4f1ed">Delivered</td>
 
                     <td style="text-align: center; background-color: #f4f1ed">
-                        <a type="button" class="button-detail" style=" background-color: #00b8ff">Details</a>
+                        <a type="button" class="button-detail" style=" background-color: #00b8ff"
+                           th:href="@{/orders/details/{id}(id=${order.id})}">Details</a>
                     </td>
 
                 </tr>

@@ -14,7 +14,7 @@
 </div>
 
 <div class="col-5 float-start mx-lg-5">
-  <img alt="pizza delivery image" src="/images/pizzaDelivery.png" class="delivery-image">
+  <img alt="pizza delivery image" src="/images/pizzaDelivery.jpg" class="delivery-image">
 </div>
 
 <div class="col-5 float-end">
@@ -139,7 +139,7 @@
                 th:errorclass="is-invalid"
                 class="form-select text-secondary">
           <option value="">Select gender</option>
-          <option th:each="g:${T(org.example.deliveryservice.model.enums).values()}"
+          <option th:each="g:${T(bg.softuni.fooddelivery.domain.enums.GenderEnum).values()}"
                   th:text="${g.name()}"
                   th:value="${g}">Male</option>
 

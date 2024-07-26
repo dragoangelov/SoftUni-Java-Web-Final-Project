@@ -36,7 +36,6 @@ public class DatabaseInitializationService {
     public void init() {
         initRoles();
         initAdmin();
-        initWorkers();
         initUsers();
     }
 

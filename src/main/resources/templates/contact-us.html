@@ -16,6 +16,7 @@
 <form class="contact-form mb-4"
       th:action="@{/contact}"
       th:method="POST"
+      th:object="${contactDto}"
 style="width: 70%">
 
 
@@ -34,10 +35,14 @@ style="width: 70%">
             <div class="md-form mb-0">
               <label for="name" class="">Your name</label>
               <input type="text"
+                     th:field="*{name}"
+                     th:errorclass="is-invalid"
                      id="name"
                      name="name"
                      class="form-control">
-              <div class="invalid-feedback errors-contact alert-danger">
+              <div class="invalid-feedback errors-contact alert-danger"
+                   th:each="err :${#fields.errors('name')}"
+                   th:text="${err}"/>
             </div>
           </div>
 
@@ -45,8 +50,12 @@ style="width: 70%">
             <div class="md-form mb-0">
               <label for="email" class="">Your email</label>
               <input type="email"
+                     th:field="*{email}"
+                     th:errorclass="is-invalid"
                      id="email" name="email" class="form-control">
-              <div class="invalid-feedback errors-contact alert-danger">
+              <div class="invalid-feedback errors-contact alert-danger"
+                   th:each="err :${#fields.errors('email')}"
+                   th:text="${err}"/>
             </div>
           </div>
         </div>
@@ -56,8 +65,12 @@ style="width: 70%">
             <div class="md-form mb-0">
               <label for="subject" class="">Subject</label>
               <input type="text"
+                     th:field="*{subject}"
+                     th:errorclass="is-invalid"
                      id="subject" name="subject" class="form-control">
-              <div class="invalid-feedback errors-contact alert-danger">
+              <div class="invalid-feedback errors-contact alert-danger"
+                   th:each="err :${#fields.errors('subject')}"
+                   th:text="${err}"/>
             </div>
           </div>
         </div>
@@ -68,8 +81,12 @@ style="width: 70%">
             <div class="md-form">
               <label for="message">Your message</label>
               <textarea type="text"
+                        th:field="*{description}"
+                        th:errorclass="is-invalid"
                         id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-              <div class="invalid-feedback errors-contact alert-danger">
+              <div class="invalid-feedback errors-contact alert-danger"
+                   th:each="err :${#fields.errors('description')}"
+                   th:text="${err}"/>
             </div>
           </div>
 
@@ -90,11 +107,11 @@ style="width: 70%">
         </li>
 
         <li><i class="fas fa-phone mt-4 fa-2x"></i>
-          <p>+359888111222</p>
+          <p>+359797878787</p>
         </li>
 
         <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-          <p>drago.angelov91@gmail.com</p>
+          <p>drago.angelov91gmail.com</p>
         </li>
 
       </ul>
@@ -102,6 +119,7 @@ style="width: 70%">
     </div>
 
   </div>
+
 </form>
 
 <th:block th:insert="~{fragments/footer}"></th:block>

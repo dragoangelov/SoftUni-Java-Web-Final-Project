@@ -39,23 +39,25 @@ margin-top: 130px;">
 
                 <tbody>
 
-                <tr>
+                <tr th:each="user: ${users}" th:object="${user}" th:if="${user.id!=1}">
 
-                    <th scope="row" class="text-center"
+                    <th scope="row" th:text="*{username}" class="text-center"
                         style="background-color: #00b8ff; color: white">1
                     </th>
 
-                    <td class="text-center" style="background-color: #f4f1ed">0.00</td>
+                    <td th:text="*{email}" class="text-center" style="background-color: #f4f1ed">0.00</td>
 
                     <td style="text-align: center; background-color: #f4f1ed">
-                        <a type="button" class="button-detail" style=" background-color: #346fc3;">Details</a>
+                        <a type="button" class="button-detail" style=" background-color: #346fc3;"
+                           th:href="@{/users/profile/{id}(id=${user.id})}">Details</a>
                     </td>
 
-                    <td class="text-center"
+                    <td th:text="*{#strings.listJoin(getRolesNames(),',')}" class="text-center"
                         style="background-color: #f4f1ed"></td>
 
                     <td style="text-align: center; background-color: #f4f1ed">
-                        <a type="button" class="button-detail" style=" background-color: #346fc3;">Change roles</a>
+                        <a type="button" class="button-detail" style=" background-color: #346fc3;"
+                           th:href="@{/users/change/{id}(id=${user.id})}">Change roles</a>
                     </td>
 
                 </tr>
