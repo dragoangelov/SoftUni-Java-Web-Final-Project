@@ -1,4 +1,6 @@
 package org.example.deliveryservice.service;
+
+import org.example.deliveryservice.exception.NotFoundException;
 import org.example.deliveryservice.model.dto.OrderBindingDto;
 import org.example.deliveryservice.model.dto.OrderViewDto;
 import org.example.deliveryservice.model.dto.ProductViewDto;
@@ -7,10 +9,10 @@ import org.example.deliveryservice.model.entity.ProductEntity;
 import org.example.deliveryservice.model.entity.UserEntity;
 import org.example.deliveryservice.model.enums.OrderStatusEnum;
 import org.example.deliveryservice.repository.OrderRepository;
-import org.hibernate.ObjectNotFoundException;
-import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -83,13 +85,11 @@ public class OrderService {
                 .add(BigDecimal.valueOf(user.getCart().getCountProducts() * 0.5))
                 .add(BigDecimal.valueOf(3.50));
 
-
-
         order
                 .setOwner(user)
                 .setPrice(price)
                 .setCreatedOn(LocalDateTime.now())
-                .setComment(orderDto.getComment() != null ? orderDto.getComment() : "no comment")
+                .setComment(orderDto.getComment() != null ? orderDto.getComment() : "No comment")
                 .setAddress(orderDto.getAddress())
                 .setContactNumber(orderDto.getContactNumber())
                 .setStatus(OrderStatusEnum.IN_PROGRESS);
@@ -129,7 +129,7 @@ public class OrderService {
     public OrderViewDto getOrderById(Long id) {
 
         OrderEntity order = this.orderRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException(id, "order"));
+                .orElseThrow(() -> new NotFoundException(id, "Order"));
 
         if (order.getComment().equals("")) {
             order.setComment("There is no comment on this order");
@@ -150,7 +150,7 @@ public class OrderService {
 
         OrderEntity orderEntity = this.orderRepository
                 .findById(orderId)
-                .orElseThrow(() -> new ObjectNotFoundException(orderId, "order"));
+                .orElseThrow(() -> new NotFoundException(orderId, "Order"));
 
         orderEntity.setStatus(OrderStatusEnum.DELIVERED);
         orderEntity.setDeliveredOn(LocalDateTime.now());
@@ -162,7 +162,7 @@ public class OrderService {
 
         OrderEntity orderEntity = this.orderRepository
                 .findById(orderId)
-                .orElseThrow(() -> new ObjectNotFoundException(orderId, "order"));
+                .orElseThrow(() -> new NotFoundException(orderId, "Order"));
 
         orderEntity.setStatus(OrderStatusEnum.CANCELLED);
 
@@ -170,4 +170,3 @@ public class OrderService {
     }
 
 }
-

@@ -1,11 +1,15 @@
 package org.example.deliveryservice.model.dto;
 
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Size;
+
 public class OrderBindingDto {
 
     private String comment;
 
     private String address;
 
+    @Size(min = 10, max = 10)
     private String contactNumber;
 
 

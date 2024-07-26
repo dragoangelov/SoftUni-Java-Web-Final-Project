@@ -32,11 +32,11 @@ INSERT INTO `products` (name, price, description,category) VALUES ('Orange juice
 INSERT INTO `products` (name, price, description,category) VALUES ('Water',1.00,'0.5L','drink');
 INSERT INTO `products` (name, price, description,category) VALUES ('Beer',4.99,'0.5L','drink');
 
-INSERT INTO `users` (age, email, first_name, gender, last_name, password, phone_number, username) VALUES (23, 'admin@bg.bg', 'Admin', 'MALE', 'Adminov', '123123', 0899444333, 'admin');
-INSERT INTO `users` (age, email, first_name, gender, last_name, password, phone_number, username) VALUES (32, 'user@bg.bg', 'User', 'MALE', 'Userov', '123123', 0899444222, 'user');
-
-INSERT INTO `roles` (id, role) VALUES (1, 'ADMIN');
-INSERT INTO `roles` (id, role) VALUES (2, 'USER');
-
-INSERT INTO `users_roles` (user_entity_id, roles_id) VALUES (1, 1);
-INSERT INTO `users_roles` (user_entity_id, roles_id) VALUES (2, 2);
+# INSERT INTO `users` (age, email, first_name, gender, last_name, password, phone_number, username) VALUES (23, 'admin@bg.bg', 'Admin', 'MALE', 'Adminov', '$2a$12$aHF65/6Hg1Zcx3aJ0bjyGejeZpQ0wcY921UbO6MSiQ776rHOmC50O', 0899444333, 'admin');
+# INSERT INTO `users` (age, email, first_name, gender, last_name, password, phone_number, username) VALUES (32, 'user@bg.bg', 'User', 'MALE', 'Userov', '$2a$12$aHF65/6Hg1Zcx3aJ0bjyGejeZpQ0wcY921UbO6MSiQ776rHOmC50O', 0899444222, 'user');
+#
+# INSERT INTO `roles` (id, role) VALUES (1, 'ADMIN');
+# INSERT INTO `roles` (id, role) VALUES (2, 'USER');
+#
+# INSERT INTO `users_roles` (user_entity_id, roles_id) VALUES (1, 1);
+# INSERT INTO `users_roles` (user_entity_id, roles_id) VALUES (2, 2);

@@ -32,7 +32,7 @@ margin-top: 130px;">
                     <th scope="col" class="text-center">Email</th>
                     <th scope="col" class="text-center">More details</th>
                     <th scope="col" class="text-center">Roles</th>
-                    <th scope="col" class="text-center">Manage</th>
+
                 </tr>
 
                 </thead>
@@ -55,10 +55,6 @@ margin-top: 130px;">
                     <td th:text="*{#strings.listJoin(getRolesNames(),',')}" class="text-center"
                         style="background-color: #f4f1ed"></td>
 
-                    <td style="text-align: center; background-color: #f4f1ed">
-                        <a type="button" class="button-detail" style=" background-color: #346fc3;"
-                           th:href="@{/users/change/{id}(id=${user.id})}">Change roles</a>
-                    </td>
 
                 </tr>
 

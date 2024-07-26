@@ -22,9 +22,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        http
+        httpSecurity
                 .authorizeHttpRequests()
                 //for the static resources
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
@@ -34,13 +34,13 @@ public class SecurityConfig {
                         "/menu/**",
                         "/contact",
                         "/users/profile").permitAll()
-
+                //for anonymous users
                 .requestMatchers("/users/login"
                         , "/users/register",
                         "/users/login-error",
                         "/",
                         "/contact").anonymous()
-
+                //for users
                 .requestMatchers("/menu/**",
                         "/menu",
                         "/closed",
@@ -52,7 +52,8 @@ public class SecurityConfig {
                         "/orders/details/**",
                         "/orders/history",
                         "/users/profile").hasRole(UserRoleEnum.USER.name())
-
+                //for workers
+                //for admins
                 .requestMatchers(
                         "/",
                         "/products/add",
@@ -83,7 +84,7 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true);
 
-        return http.build();
+        return httpSecurity.build();
     }
 
     @Bean
@@ -92,4 +93,3 @@ public class SecurityConfig {
     }
 
 }
-

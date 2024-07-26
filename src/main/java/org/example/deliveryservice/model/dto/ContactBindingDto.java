@@ -1,15 +1,20 @@
 package org.example.deliveryservice.model.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
 public class ContactBindingDto {
 
+    @Size(min = 3, max = 200)
     private String name;
 
+    @Email
     private String email;
-    @Size(min = 3)
+
+    @Size(min = 3, message = "Subject must be at least 3 symbols")
     private String subject;
-    @Size(min = 5, max = 2000)
+
+    @Size(min = 5, max = 2000, message = "Description must be between 5 and 2000 symbols.")
     private String description;
 
     public ContactBindingDto() {

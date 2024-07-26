@@ -7,10 +7,12 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class EditProductBindingDto {
-    @NotEmpty
+
+    @NotEmpty(message = "Description is required")
     private String description;
-    @Positive
-    @NotNull
+
+    @Positive(message = "Price must be a positive number")
+    @NotNull(message = "Price cannot be null")
     private BigDecimal price;
 
     public EditProductBindingDto() {

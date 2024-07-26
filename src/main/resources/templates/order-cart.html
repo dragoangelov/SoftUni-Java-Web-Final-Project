@@ -26,17 +26,19 @@
                 border-top-left-radius:25px; border-top-right-radius: 25px;
                  border-bottom-left-radius: 0; border-bottom-right-radius: 0; background-color: #346fc3">
 
-                <tr>
+                <tr th:each="food:${cartProducts}" th:object="${food}">
 
-                    <td class="product-name">Name</td>
+                    <td class="product-name" th:text="*{name}">Name</td>
 
-                    <td class="description">number Of likes</td>
+                    <td class="description" th:text="*{description}">number Of likes</td>
 
-                    <td class="price text-center">content</td>
+                    <td th:text="*{price}" class="price text-center">content</td>
 
                     <td>
 
-                        <form>
+                        <form th:method="PATCH"
+                              th:action="@{/cart/remove/{id}(id = *{id})}"
+                              th:object="${food}">
                             <button class="remove-button" type="submit"
                                     style="border-color: white"
                             >Remove
@@ -61,7 +63,8 @@
         </div>
 
         <div class="mt-2" style="margin-right: 0; margin-left: 950px;">
-            <a class="finalize-order justify-content-center">Finalize order</a>
+            <a class="finalize-order justify-content-center" th:if="${cartProducts.size()!=0}"
+               th:href="@{/orders/finalize}">Finalize order</a>
         </div>
 
     </div>

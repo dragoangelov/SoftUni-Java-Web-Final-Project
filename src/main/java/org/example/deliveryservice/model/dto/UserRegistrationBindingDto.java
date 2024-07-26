@@ -6,29 +6,38 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import org.example.deliveryservice.model.enums.GenderEnum;
+import org.example.deliveryservice.validation.UniqueUsername;
 
 public class UserRegistrationBindingDto {
 
     @NotNull
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 symbols")
     private String firstName;
 
-    @NotNull    private String lastName;
+    @NotNull
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 symbols")
+    private String lastName;
 
     @NotNull
+    @UniqueUsername
     private String username;
 
-    @Email
+    @Email(message = "Email must be provided")
+    @NotNull
     private String email;
 
     @NotNull
+    @Size(min = 4, max = 20)
     private String password;
 
     @NotNull
+    @Size(min = 4, max = 20)
     private String confirmPassword;
 
     @Positive
-    @NotNull
+    @NotNull(message = "Age should be provided.")
     private Integer age;
 
     private String phoneNumber;

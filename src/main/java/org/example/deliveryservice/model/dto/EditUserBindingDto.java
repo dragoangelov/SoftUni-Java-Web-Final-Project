@@ -1,9 +1,13 @@
 package org.example.deliveryservice.model.dto;
 
+import jakarta.validation.constraints.Size;
+
 public class EditUserBindingDto {
 
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 symbols")
     private String firstName;
 
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 symbols")
     private String lastName;
 
     public EditUserBindingDto() {

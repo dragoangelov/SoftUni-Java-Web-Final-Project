@@ -139,7 +139,7 @@
                 th:errorclass="is-invalid"
                 class="form-select text-secondary">
           <option value="">Select gender</option>
-          <option th:each="g:${T(bg.softuni.fooddelivery.domain.enums.GenderEnum).values()}"
+          <option th:each="g:${T(org.example.deliveryservice.model.enums.GenderEnum).values()}"
                   th:text="${g.name()}"
                   th:value="${g}">Male</option>
 

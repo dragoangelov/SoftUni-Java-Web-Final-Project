@@ -57,19 +57,53 @@ public class DatabaseInitializationService {
     public void initAdmin() {
         if (this.userRepository.count() == 0) {
             UserEntity user = new UserEntity()
+                    .setFirstName("Admin")
+                    .setLastName("Admin")
+                    .setAge(25)
+                    .setEmail("admin@abv.com")
+                    .setPassword(passwordEncoder.encode("123123"))
+                    .setGender(GenderEnum.MALE)
+                    .setUsername("admin")
+                    .setPhoneNumber("0888444111")
+                    .setRoles(userRoleRepository.findAll())
                     .setCart(this.cartService.getNewCart());
 
             this.userRepository.saveAndFlush(user);
         }
     }
 
+
     private void initUsers() {
-        if (this.userRepository.count() == 3) {
+        if (this.userRepository.count() == 1) {
 
             UserEntity userOne = new UserEntity()
+                    .setFirstName("Drago")
+                    .setLastName("Angelov")
+                    .setAge(25)
+                    .setEmail("drago@abv.com")
+                    .setPassword(passwordEncoder.encode("123123"))
+                    .setGender(GenderEnum.MALE)
+                    .setUsername("user")
+                    .setPhoneNumber("0888444999")
+                    .setRoles(userRoleRepository.findAll()
+                            .stream()
+                            .filter(r -> r.getRole() == UserRoleEnum.USER)
+                            .collect(Collectors.toList()))
                     .setCart(this.cartService.getNewCart());
 
             UserEntity userTwo = new UserEntity()
+                    .setFirstName("Denitsa")
+                    .setLastName("Angelova")
+                    .setAge(29)
+                    .setEmail("deni@abv.com")
+                    .setPassword(passwordEncoder.encode("123123"))
+                    .setGender(GenderEnum.FEMALE)
+                    .setUsername("deni")
+                    .setPhoneNumber("0888999777")
+                    .setRoles(userRoleRepository.findAll()
+                            .stream()
+                            .filter(r -> r.getRole() == UserRoleEnum.USER)
+                            .collect(Collectors.toList()))
                     .setCart(this.cartService.getNewCart());
 
 

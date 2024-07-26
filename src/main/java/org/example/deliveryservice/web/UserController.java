@@ -56,15 +56,6 @@ public class UserController {
         return "all-users";
     }
 
-    @GetMapping("/change/{id}")
-    public String getChangeRoles(@PathVariable("id") Long id,
-                                 Model model) {
-
-        model.addAttribute("user", this.userService.getUserById(id));
-
-        return "roles-change";
-
-    }
 
 
     @GetMapping("/edit/{id}")
