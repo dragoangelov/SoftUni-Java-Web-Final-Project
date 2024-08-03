@@ -27,7 +27,6 @@
                     <th scope="col" class="text-center">Price</th>
                     <th scope="col" class="text-center">Created on</th>
                     <th scope="col" class="text-center">Status</th>
-                    <th scope="col" class="text-center">More details</th>
                 </tr>
                 </thead>
 
@@ -47,10 +46,7 @@
 
                     <td th:text="*{status.name()}" class="text-center" style="background-color: #f4f1ed">Delivered</td>
 
-                    <td style="text-align: center; background-color: #f4f1ed">
-                        <a type="button" class="button-detail" style=" background-color: #00b8ff"
-                           th:href="@{/orders/details/{id}(id=${order.id})}">Details</a>
-                    </td>
+
 
                 </tr>
 
